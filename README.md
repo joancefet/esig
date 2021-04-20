@@ -46,7 +46,7 @@ sudo kubeadm init --pod-network-cidr=10.100.0.0/16
 
 Iniciando Minikube
 ```shell
-minikube start
+minikube start --driver=virtualbox
 ```
 
 ### Aplicando os manifestes Postgres
