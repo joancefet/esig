@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths: 
+          - path: /wikijs
+            backend:
+                serviceName: wikijs
+                servicePort: 31552
+          # - path: /rocketchat
+          #   backend:
+          #       serviceName: rocketchat
+          #       servicePort: 33001

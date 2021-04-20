@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wikijs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wikijs
+  template:
+    metadata:
+      labels:
+        app: wikijs
+    spec:
+      containers:
+      - name: wikijs
+        image: requarks/wiki:2.4
+        resources:
+          limits:
+            memory: 2Gi
+          requests:
+            memory: 2Gi
+        env:
+          - name: "DB_TYPE"
+            value: "postgres"
+          - name: "DB_HOST"
+            value: "192.168.49.2"
+          - name: "DB_PORT"
+            value: "30432"
+          - name: "DB_USER"
+            value: "postgresadmin"
+          - name: "DB_PASS"
+            value: "root"
+          - name: "DB_NAME"
+            value: "postgresdb"
+          - name: "PUID"
+            value: "998"
+          - name: "PGID"
+            value: "100"
+          - name: "TZ"
+            value: "America/Sao_Paulo"
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+      volumes:
+        - name: wikijs
+          hostPath: 
+            path: /mnt/wikijs
+            type: DirectoryOrCreate
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wikijs
+spec:
+  type: LoadBalancer
+  selector:
+    app: wikijs
+  ports:
+  - protocol: TCP
+    port: 33000
+    targetPort: 3000
