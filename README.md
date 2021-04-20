@@ -34,6 +34,11 @@ helm repo add stable https://charts.helm.sh/stable
 helm repo update
 ```
 
+Instalando Virtualbox(requerimento para o Minikube)
+```shell
+sudo apt install virtualbox
+```
+
 Iniciando cluster kubernetes
 ```shell
 sudo kubeadm init --pod-network-cidr=10.100.0.0/16
