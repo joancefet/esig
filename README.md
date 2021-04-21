@@ -51,16 +51,16 @@ minikube start --driver=virtualbox
 
 ### Aplicando os manifestes Postgres
 ```shell
-kubectl create -f postgresql/postgres-config.yaml | set database credentials
-kubectl create -f postgresql/postgres-workload.yaml | create pods, services, deployment
-kubectl create -f postgresql/pgadmin-workload.yaml | create pods, services, deployment
+kubectl create -f postgresql/postgres-config.yaml
+kubectl create -f postgresql/postgres-workload.yaml
+kubectl create -f postgresql/pgadmin-workload.yaml
 ```
 
 ### Aplicando os manifests para o WikiJS
 OBS.: Alterar o IP do banco no arquivo wiki-deployment.yaml
 ```shell
-kubectl create -f wikijs/wiki-deployment.yaml | create pods, services, deployment
-kubectl create -f wikijs/wiki-ingress.yaml | create server nginx for comunication http
+kubectl create -f wikijs/wiki-deployment.yaml
+kubectl create -f wikijs/wiki-ingress.yaml
 ```
 
 ### Exportando o WikiJS para um endereço externo
