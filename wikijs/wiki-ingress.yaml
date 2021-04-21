@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress
@@ -7,11 +7,14 @@ metadata:
 spec:
   rules:
     - http:
-        paths: 
+        paths:
           - path: /wikijs
+            pathType: Prefix
             backend:
-                serviceName: wikijs
-                servicePort: 31552
+                service:
+                    name: wikijs
+                    port:
+                        number: 31552
           # - path: /rocketchat
           #   backend:
           #       serviceName: rocketchat
