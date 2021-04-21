@@ -57,9 +57,15 @@ kubectl create -f postgresql/pgadmin-workload.yaml | create pods, services, depl
 ```
 
 ### Aplicando os manifests para o WikiJS
+OBS.: Alterar o IP do banco no arquivo wiki-deployment.yaml
 ```shell
 kubectl create -f wikijs/wiki-deployment.yaml | create pods, services, deployment
 kubectl create -f wikijs/wiki-ingress.yaml | create server nginx for comunication http
+```
+
+### Exportando o WikiJS para um endereço externo
+```shell
+minikube service wikijs
 ```
 
 ### Instalando RocketChat e MongoDB
